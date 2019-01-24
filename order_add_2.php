@@ -15,7 +15,7 @@ $id = 'O'.sprintf("%04d", $row["COUNT(*)"] + 1);
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa fa-bars"></i> บันทึกการเช่า <?php echo $id;?></h3>
+            <h3 class="page-header"><i class="fa fa fa-bars"></i> บันทึกการเช่า <?php echo $id;?> | (ระยะเวลาเช่า <?php echo $days;?> วัน)</h3>
           </div>
         </div>
         <!-- page start-->
@@ -48,9 +48,12 @@ while($row = $result->fetch_assoc()) {
                 <thead>
                   <tr>
                     <th>ชื่อสินค้า</th>
-                    <th>จำนวน</th>
-                    <th>ค่ามัดจำ</th>
-					<th>ค่าบริการ</th>
+					<th>ค่ามัดจำ</th>
+					<th>ค่าเช่า</th>
+					<th>ค่าส่ง</th>
+					<th>จำนวน</th>
+                    <th>รวมค่ามัดจำ</th>
+					<th>รวมค่าบริการ</th>
 					<th>รวม</th>
                   </tr>
                 </thead>
@@ -69,7 +72,7 @@ while($row = $result->fetch_assoc()) {
 			$deposit = $count * $row["rate_deposit"];
 			$service = $count * (($row["rate_rent"] * $days) + $row["rate_ship"]);
 			$total = $deposit + $service;
-			echo "<tr><td>".$row["name"]."</td><td>".$count."</td><td>".$deposit."</td><td>".$service."</td><td>".$total."</td></tr>\n";
+			echo "<tr><td>".$row["name"]."</td><td>".$row["rate_deposit"]."</td><td>".$row["rate_rent"]."</td><td>".$row["rate_ship"]."</td><td>".$count."</td><td>".$deposit."</td><td>".$service."</td><td>".$total."</td></tr>\n";
 			echo "<input type=\"hidden\" name=\"".$row["id"]."\" value=\"".$count."\">\n";
 			$total_count = $total_count + $count;
 			$total_deposit = $total_deposit + $deposit;
@@ -82,7 +85,7 @@ while($row = $result->fetch_assoc()) {
                 </tbody>
                 <thead>
                   <tr>
-                    <th>รวม</th>
+                    <th colspan=4>รวม</th>
 <?php
 echo "<th>".$total_count."</th>\n";
 echo "<th>".$total_deposit."</th>\n";

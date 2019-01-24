@@ -78,10 +78,13 @@ if (isset($_POST['id']) || isset($_GET['id'])) {
 					<td><?php echo $end;?></td>
                   </tr>
 				  <tr>
-				    <td colspan="6"><b>รายการ</b></td>
+				    <td colspan="3"><b>ชื่อสินค้า</b></td>
+					<th><b>ค่ามัดจำ</b></th>
+					<th><b>ค่าเช่า</b></th>
+					<th><b>ค่าส่ง</b></th>
 					<td><b>จำนวน</b></td>
-					<td><b>ค่ามัดจำ</b></td>
-					<td><b>ค่าบริการ</b></td>
+					<td><b>รวมค่ามัดจำ</b></td>
+					<td><b>รวมค่าบริการ</b></td>
 					<td><b>รวม</b></td>
 				  </tr>
 <?php
@@ -95,7 +98,7 @@ $result = $conn->query($sql);
 $product_total = 0;
 while($row = $result->fetch_assoc()) {
 	$product_total = $row["deposit"] + $row["service"];
-	echo "<tr><td colspan=\"6\">".$row["name"]."</td><td>".$row["count"];
+	echo "<tr><td colspan=\"3\">".$row["name"]."</td><td>".$row["rate_deposit"]."</td><td>".$row["rate_rent"]."</td><td>".$row["rate_ship"]."</td><td>".$row["count"];
 	if ($row["count"] > $row["count_ready"]) {
 		$error = 1;
 		echo " (".$row["count_ready"].")";

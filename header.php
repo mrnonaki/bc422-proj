@@ -8,7 +8,7 @@ $conn->set_charset("utf8");
 <head>
   <meta charset="utf-8">
 
-  <title>BC422</title>
+  <title>Rent Computer Parts System</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@ $conn->set_charset("utf8");
       </div>
 
       <!--logo start-->
-      <a href="index.html" class="logo">BC<span class="lite">422</span></a>
+      <a href="index.html" class="logo">Rent Computer Parts<span class="lite"> System</span></a>
       <!--logo end-->
 
 

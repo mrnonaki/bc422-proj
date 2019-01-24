@@ -3,7 +3,7 @@ $conn = new mysqli("localhost", "root", "", "proj_rent");
 $conn->set_charset("utf8");
 if (isset($_POST['id'])) {
 	$id = $_POST['id'];
-	$days = $_POST['days'];
+	$days = $_POST['days'] - 1;
 	$start = date("Y-m-d");
 	$end = date("Y-m-d", strtotime("$start + $days day"));
 	$customer = $_POST['customer'];
@@ -19,7 +19,7 @@ if (isset($_POST['id'])) {
 			$count = $_POST[$row["id"]];
 			if ($count > 0) {
 				$deposit = $count * $row["rate_deposit"];
-				$service = $count * (($row["rate_rent"] * $days) + $row["rate_ship"]);
+				$service = $count * (($row["rate_rent"] * ($days + 1)) + $row["rate_ship"]);
 				$sqll = "INSERT INTO rent VALUES ('', '$id', '$product', '$count', '$deposit', '$service', NULL, NULL)";
 				$resultt = $conn->query($sqll);
 			}
